@@ -1,0 +1,16 @@
+ultralytics
+opencv-python
+mediapipe
+pandas
+numpy
+matplotlib
+seaborn
+torch
+torchvision
+roboflow
+gdown
+yt-dlp
+supervision>=0.17.0
+flask
+scikit-learn
+tqdm

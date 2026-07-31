@@ -1,0 +1,57 @@
+# src/config.py
+import mediapipe as mp
+import mediapipe.python.solutions.pose as pose
+import math
+
+# --- PATH CONFIGURATION ---
+DATA_DIR = 'data'
+MODELS_DIR = 'models'
+OUTPUTS_DIR = 'outputs'
+LOGS_DIR = 'logs'
+
+# YOLO Model Configuration
+YOLO_MODEL_NAME = 'yolov8s.pt'
+YOLO_CONFIDENCE_THRESHOLD = 0.5
+
+# --- DETECTION THRESHOLDS ---
+
+# SHOPLIFTING (Palming/Concealment - Proximity + Time)
+CONCEALMENT_FRAMES_THRESHOLD = 8
+PRODUCT_PROXIMITY_PIXELS = 75
+
+# CROUCH WALKING (Abnormal Pose)
+NORMALIZED_HEIGHT_RATIO_THRESHOLD = 0.50
+
+# PICKPOCKETING (Velocity + Proximity)
+VELOCITY_THRESHOLD = 15.0
+HIP_PROXIMITY_PIXELS = 60
+
+# BAG SNATCHING (Acceleration + Trajectory)
+ACCELERATION_THRESHOLD = 20.0
+TRAJECTORY_CHANGE_THRESHOLD = 55  # degrees
+
+# --- MEDIAPIPE LANDMARK INDICES ---
+RIGHT_WRIST_IDX = pose.PoseLandmark.RIGHT_WRIST.value
+LEFT_WRIST_IDX = pose.PoseLandmark.LEFT_WRIST.value
+LEFT_SHOULDER_IDX = pose.PoseLandmark.LEFT_SHOULDER.value
+RIGHT_SHOULDER_IDX = pose.PoseLandmark.RIGHT_SHOULDER.value
+LEFT_HIP_IDX = pose.PoseLandmark.LEFT_HIP.value
+RIGHT_HIP_IDX = pose.PoseLandmark.RIGHT_HIP.value
+
+# --- YOLO CLASS MAPPING (COCO Dataset IDs) ---
+PERSON_CLASS_ID = 0
+BAG_CLASS_ID = 24  # Backpack in COCO dataset
+PRODUCT_CLASSES = [39, 41, 73, 67]  # Bottle, Cup, Book, Cell phone
+
+# --- TRACKING CONFIGURATION ---
+TRACK_BUFFER_SIZE = 30
+TRACK_CONFIDENCE_THRESHOLD = 0.4
+
+# --- VISUALIZATION CONFIGURATION ---
+COLORS = {
+    'person': (0, 255, 0),      # Green
+    'product': (255, 0, 0),     # Blue
+    'bag': (0, 0, 255),         # Red
+    'alert': (0, 0, 255),       # Red for alerts
+    'pose': (245, 117, 66)      # Orange for pose
+}
